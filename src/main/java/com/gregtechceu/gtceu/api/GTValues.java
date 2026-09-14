@@ -58,25 +58,30 @@ public class GTValues {
      * The Voltage Tiers. Use this Array instead of the old named Voltage Variables
      */
     public static final long[] V = { 8, 32, 128, 512, 2048, 8192, 32768, 131072, 524288, 2097152, 8388608,
-            33554432, 134217728, 536870912, 2147483648L };
+            33554432, 134217728, 536870912, 2147483648L, 8589934592L, 34359738368L, 137438953472L, 549755813888L,
+            2199023255552L, 8796093022208L, 35184372088832L, 140737488355328L, 562949953421312L, 2251799813685248L
+    };
 
     /**
      * The Voltage Tiers divided by 2.
      */
     public static final int[] VH = { 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216,
-            67108864, 268435456, 1073741824 };
+            67108864, 268435456, 1073741824, 4294967296L, 17179869184L, 68719476736L, 274877906944L, 1099511627776L,
+            4398046511104L, 17592186044416L, 70368744177664L, 281474976710656L, 1125899906842624L};
 
     /**
      * The Voltage Tiers adjusted for cable loss. Use this for recipe EU/t to avoid full-amp recipes
      */
     public static final int[] VA = { 7, 30, 120, 480, 1920, 7680, 30720, 122880, 491520, 1966080, 7864320,
-            31457280, 125829120, 503316480, 2013265920 };
+            31457280, 125829120, 503316480, 2013265920, 8053063680L, 32212254720L, 128849018880L, 515396075520L,
+            2061584302080L, 8246337208320L, 32985348833280L, 131941395333120L, 527765581332480L, 2111062325329920L};
 
     /**
      * The Voltage Tiers adjusted for cable loss, divided by 2.
      */
     public static final int[] VHA = { 3, 15, 60, 240, 960, 3840, 15360, 61440, 245760, 983040, 3932160, 15728640,
-            62914560, 251658240, 1006632960 };
+            62914560, 251658240, 1006632960, 4026531840L, 16106127360L, 64424509440L, 257698037760L, 1030792151040L,
+            4123168604160L, 16492674416640L, 65970697666560L, 263882790666240L, 1055531162664960L};
 
     /**
      * The Voltage Tiers. Use this Array instead of the old named Voltage Variables
@@ -102,10 +107,20 @@ public class GTValues {
     public static final int UXV = 12;
     public static final int OpV = 13;
     public static final int MAX = 14;
+    public static final int EpV = 15;
+    public static final int LgV = 16;
+    public static final int MyV = 17;
+    public static final int ErV = 18;
+    public static final int VV = 19;
+    public static final int ElV = 20;
+    public static final int CV = 21;
+    public static final int EtV = 22;
+    public static final int AbV = 23;
+    public static final int FV = 24;
     public static final int MAX_TRUE = 30;
 
     public static final int[] ALL_TIERS = new int[] { ULV, LV, MV, HV, EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UXV, OpV,
-            MAX };
+            MAX, EpV, LgV, MyV, ErV, VV, ElV, CV, EtV, AbV, FV };
     public static final int TIER_COUNT = ALL_TIERS.length;
 
     public static int[] tiersBetween(int minInclusive, int maxInclusive) {
@@ -152,13 +167,12 @@ public class GTValues {
      * The short names for the voltages, used for registration primarily
      */
     public static final String[] VN = new String[] { "ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "UHV",
-            "UEV", "UIV", "UXV", "OpV", "MAX" };
+            "UEV", "UIV", "UXV", "OpV", "MAX", "EpV", "LgV", "MyV", "ErV", "VV", "ElV", "CV", "EtV", "AbV", "FV" };
 
-    public static final IntFunction<String> MAX_PLUS_FORMAT = (value) -> "" + RED + BOLD + "M" +
-            GREEN + BOLD + "A" +
-            BLUE + BOLD + "X" +
-            YELLOW + BOLD + "+" +
-            RED + BOLD + value;
+    public static final IntFunction<String> FV_PLUS_FORMAT = (value) -> "" + RED + BOLD + "F" +
+            GREEN + BOLD + "V" +
+            BLUE + BOLD + "+" +
+            YELLOW + BOLD + value;
 
     /**
      * The short names for the voltages, formatted for text
@@ -179,22 +193,22 @@ public class GTValues {
             YELLOW + "UXV",
             BLUE.toString() + BOLD + "OpV",
             RED.toString() + BOLD + "MAX",
-            MAX_PLUS_FORMAT.apply(1),
-            MAX_PLUS_FORMAT.apply(2),
-            MAX_PLUS_FORMAT.apply(3),
-            MAX_PLUS_FORMAT.apply(4),
-            MAX_PLUS_FORMAT.apply(5),
-            MAX_PLUS_FORMAT.apply(6),
-            MAX_PLUS_FORMAT.apply(7),
-            MAX_PLUS_FORMAT.apply(8),
-            MAX_PLUS_FORMAT.apply(9),
-            MAX_PLUS_FORMAT.apply(10),
-            MAX_PLUS_FORMAT.apply(11),
-            MAX_PLUS_FORMAT.apply(12),
-            MAX_PLUS_FORMAT.apply(13),
-            MAX_PLUS_FORMAT.apply(14),
-            MAX_PLUS_FORMAT.apply(15),
-            MAX_PLUS_FORMAT.apply(16),
+            PURPLE.toString() + BOLD + "EpV",
+            YELLOW.toString() + BOLD + "LgV",
+            GOLD.toString() + BOLD + "MyV",
+            GRAY.toString() + BOLD + "ErV",
+            DARK_GRAY.toString() + BOLD + "VV",
+            BLACK.toString() + BOLD + "ElV",
+            AQUA.toString() + BOLD + "CV",
+            GREEN.toString() + BOLD + "EtV",
+            DARK_GREEN.toString() + BOLD + "AbV",
+            WHITE.toString() + BOLD + "FV",
+            FV_PLUS_FORMAT.apply(1),
+            FV_PLUS_FORMAT.apply(2),
+            FV_PLUS_FORMAT.apply(3),
+            FV_PLUS_FORMAT.apply(4),
+            FV_PLUS_FORMAT.apply(5),
+            FV_PLUS_FORMAT.apply(6),
     };
 
     public static final String[] VCF = new String[] {
@@ -212,7 +226,17 @@ public class GTValues {
             DARK_GREEN.toString(),
             YELLOW.toString(),
             BLUE.toString() + BOLD.toString(),
-            RED.toString() + BOLD.toString() };
+            RED.toString() + BOLD.toString(),
+            PURPLE.toString() + BOLD.toString(),
+            YELLOW.toString() + BOLD.toString(),
+            GOLD.toString() + BOLD.toString(),
+            GRAY.toString() + BOLD.toString(),
+            DARK_GRAY.toString() + BOLD.toString(),
+            BLACK.toString() + BOLD.toString(),
+            AQUA.toString() + BOLD.toString(),
+            GREEN.toString() + BOLD.toString(),
+            DARK_GREEN.toString() + BOLD.toString(),
+            WHITE.toString() + BOLD.toString()};
 
     public static final String[] VLVH = new String[] {
             "Primitive", // not doing the gray color for these first two because it looks weird
@@ -229,7 +253,17 @@ public class GTValues {
             DARK_GREEN + "Epic",
             YELLOW + "Epic",
             BLUE.toString() + BOLD + "Legendary",
-            RED.toString() + BOLD + "MAX" };
+            RED.toString() + BOLD + "Legendary",
+            PURPLE.toString() + BOLD + "Legendary",
+            YELLOW.toString() + BOLD + "Legendary",
+            GOLD.toString() + BOLD + "Mythic",
+            GRAY.toString() + BOLD + "Mythic",
+            DARK_GRAY.toString() + BOLD + "Mythic",
+            BLACK.toString() + BOLD + "Mythic",
+            AQUA.toString() + BOLD + "Absurd",
+            GREEN.toString() + BOLD + "Absurd",
+            DARK_GREEN.toString() + BOLD + "Absurd",
+            WHITE.toString() + BOLD + "Final" };
 
     public static final String[] VLVT = new String[] {
             "" + RESET,
@@ -246,7 +280,17 @@ public class GTValues {
             "III" + RESET,
             "IV" + RESET,
             "" + RESET,
-            "" + RESET };
+            "II" + RESET,
+            "III" + RESET,
+            "IV" + RESET,
+            "" + RESET,
+            "II" + RESET,
+            "III" + RESET,
+            "IV" + RESET,
+            "" + RESET,
+            "II" + RESET,
+            "III" + RESET,
+            "" + RESET,};
 
     public static final String[] LVT = new String[] {
             "",
@@ -264,13 +308,24 @@ public class GTValues {
             "XII",
             "XIII",
             "XIV",
+            "XV",
+            "XVI",
+            "XVII",
+            "XVIII",
+            "XIX",
+            "XX",
+            "XXI",
+            "XXII",
+            "XXIII",
+            "XXIV"
     };
 
     /**
      * Color values for the voltages
      */
     public static final int[] VC = new int[] { 0xC80000, 0xDCDCDC, 0xFF6400, 0xFFFF1E, 0x808080, 0xF0F0F5, 0xE99797,
-            0x7EC3C4, 0x7EB07E, 0xBF74C0, 0x0B5CFE, 0x914E91, 0x488748, 0x8C0000, 0x2828F5 };
+            0x7EC3C4, 0x7EB07E, 0xBF74C0, 0x0B5CFE, 0x914E91, 0x488748, 0x8C0000, 0x2828F5, 0xD67FFF, 0xFFE97F, 0xFFB27F,
+            0xA0A0A0, 0x404040, 0x202020, 0x3F7F7F, 0x4CFF00, 0x267F00, 0xFFFFFF};
 
     // Main colour for each tier
     public static final int[] VCM = new int[] {
@@ -288,7 +343,17 @@ public class GTValues {
             DARK_GREEN.getColor(),
             YELLOW.getColor(),
             BLUE.getColor(),
-            RED.getColor()
+            RED.getColor(),
+            PURPLE.getColor(),
+            YELLOW.getColor(),
+            GOLD.getColor(),
+            GRAY.getColor(),
+            DARK_GRAY.getColor(),
+            BLACK.getColor(),
+            AQUA.getColor(),
+            GREEN.getColor(),
+            DARK_GREEN.getColor(),
+            WHITE.getColor()
     };
 
     // Main color for steam machines
@@ -301,7 +366,9 @@ public class GTValues {
     public static final String[] VOLTAGE_NAMES = new String[] { "Ultra Low Voltage", "Low Voltage", "Medium Voltage",
             "High Voltage", "Extreme Voltage", "Insane Voltage", "Ludicrous Voltage", "ZPM Voltage", "Ultimate Voltage",
             "Ultra High Voltage", "Ultra Excessive Voltage", "Ultra Immense Voltage", "Ultra Extreme Voltage",
-            "Overpowered Voltage", "Maximum Voltage" };
+            "Overpowered Voltage", "Maximum Voltage", "Epic Voltage", "Legendary Voltage", "Mythic Voltage",
+            "Error Voltage", "Void Voltage", "Eldritch Voltage", "Comical Voltage", "Eternal Voltage", "Absolute Voltage",
+            "Final Voltage"};
 
     /**
      * Used to tell if any high-tier machine (UHV+) was registered.
